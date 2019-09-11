@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "07b509a1a636c3512b2e3e7827232e8d",
+    "revision": "d7276935bc40ac35522aca584535d93c",
     "url": "/hud-gamepad/index.html"
   },
   {
