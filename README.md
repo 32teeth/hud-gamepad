@@ -16,10 +16,10 @@
 /*
 ** this is a basic joystick and 1 button setup with start and select buttons
 */
-onDeviceReady: function() {
-  GamePad.setup();
-}
+GamePad.setup();
 ```
+
+Checkout the working [React Example](https://32teeth.github.io/hud-gamepad/)
 
 ## Configuration options
 
