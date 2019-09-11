@@ -6,7 +6,8 @@
 > So you want to add a gamepad to a html5/canvas based app in [html5](http://html5.apache.org/)
 
 ```npm i html5-plugin-canvas-gamepad```
-![Animated](animated.gif)
+
+<img src="animated.gif" style="position:relative;float:left"/>
 
 ###GamePad setup and configurations
 >In your html file add *GamePad.setup()*
