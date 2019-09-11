@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/hud-gamepad/static/css/main.cfda8877.chunk.css",
+    "main.js": "/hud-gamepad/static/js/main.03574e43.chunk.js",
+    "main.js.map": "/hud-gamepad/static/js/main.03574e43.chunk.js.map",
+    "runtime~main.js": "/hud-gamepad/static/js/runtime~main.c65e3be0.js",
+    "runtime~main.js.map": "/hud-gamepad/static/js/runtime~main.c65e3be0.js.map",
+    "static/js/2.a25d00ec.chunk.js": "/hud-gamepad/static/js/2.a25d00ec.chunk.js",
+    "static/js/2.a25d00ec.chunk.js.map": "/hud-gamepad/static/js/2.a25d00ec.chunk.js.map",
+    "index.html": "/hud-gamepad/index.html",
+    "precache-manifest.a108c0d7958b62a7f8a9f3e8bf3f47d3.js": "/hud-gamepad/precache-manifest.a108c0d7958b62a7f8a9f3e8bf3f47d3.js",
+    "service-worker.js": "/hud-gamepad/service-worker.js",
+    "static/css/main.cfda8877.chunk.css.map": "/hud-gamepad/static/css/main.cfda8877.chunk.css.map"
+  }
+}
