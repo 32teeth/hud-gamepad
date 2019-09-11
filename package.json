@@ -1,0 +1,27 @@
+{
+  "name": "hud-gamepad",
+  "version": "0.5.1",
+  "description": "A Heads Up Display (HUD) for Gamepads, Keyboards and More",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/32teeth/hud-gamepad.git"
+  },
+  "keywords": [
+    "gaming",
+    "gamepad",
+    "game-pad",
+    "controller",
+    "hud",
+    "heads-up-display"
+  ],
+  "author": "eugene andruszczenko <eugene.andruszczenko@gmail.com> (http://32teeth.org)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/32teeth/hud-gamepad/issues"
+  },
+  "homepage": "https://github.com/32teeth/hud-gamepad#readme"
+}
