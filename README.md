@@ -9,7 +9,7 @@
 
 <img src="animated.gif" style="position:relative;float:left"/>
 
-###GamePad setup and configurations
+### GamePad setup and configurations
 >In your html file add *GamePad.setup()*
 
 ```javascript
@@ -55,7 +55,7 @@ onDeviceReady: function() {
 GamePad.setup();
 ```
 
-######*one button, custom name, no start button*
+###### *one button, custom name, no start button*
 
 ![default options](https://raw.githubusercontent.com/32teeth/html5-plugin-canvas-gamepad/master/images/CDVGamepad-2.png)
 
