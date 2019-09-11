@@ -1,1 +1,7 @@
-.DS_Store
+*.gitignore*
+*.DS_Store*
+**/node_modules
+**/example/src
+**/example/*.lock
+**/example/*.md
+**/example/*.json
