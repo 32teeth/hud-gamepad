@@ -1,7 +1,6 @@
-[![npm](https://img.shields.io/npm/dw/hud-gamepad.svg?style=flat-square)]()
-[![npm](https://img.shields.io/npm/dm/hud-gamepad.svg?style=flat-square)]()
-[![npm](https://img.shields.io/npm/dy/hud-gamepad.svg?style=flat-square)]()
-[![npm](https://img.shields.io/npm/dt/hud-gamepad.svg?style=flat-square)]()
+[![File Size](https://img.shields.io/github/size/32teeth/hud-gamepad/index.js?style=for-the-badge)]()
+[![npm](https://img.shields.io/npm/dw/hud-gamepad?logo=npm&style=for-the-badge)]()
+[![GitHub stars](https://img.shields.io/github/stars/32teeth/hud-gamepad?color=red&label=love&logo=github&logoColor=pink&style=for-the-badge)]()
 
 # GamePad
 > So you want to add a gamepad to a html5/canvas based app in [html5](http://html5.apache.org/)
