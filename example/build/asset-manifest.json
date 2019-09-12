@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/hud-gamepad/static/css/main.cfda8877.chunk.css",
-    "main.js": "/hud-gamepad/static/js/main.03574e43.chunk.js",
-    "main.js.map": "/hud-gamepad/static/js/main.03574e43.chunk.js.map",
+    "main.js": "/hud-gamepad/static/js/main.c2f8a9de.chunk.js",
+    "main.js.map": "/hud-gamepad/static/js/main.c2f8a9de.chunk.js.map",
     "runtime~main.js": "/hud-gamepad/static/js/runtime~main.c65e3be0.js",
     "runtime~main.js.map": "/hud-gamepad/static/js/runtime~main.c65e3be0.js.map",
-    "static/js/2.a25d00ec.chunk.js": "/hud-gamepad/static/js/2.a25d00ec.chunk.js",
-    "static/js/2.a25d00ec.chunk.js.map": "/hud-gamepad/static/js/2.a25d00ec.chunk.js.map",
+    "static/js/2.4b551d47.chunk.js": "/hud-gamepad/static/js/2.4b551d47.chunk.js",
+    "static/js/2.4b551d47.chunk.js.map": "/hud-gamepad/static/js/2.4b551d47.chunk.js.map",
     "index.html": "/hud-gamepad/index.html",
-    "precache-manifest.4fa53fbed05cec2220540b0fe0e98909.js": "/hud-gamepad/precache-manifest.4fa53fbed05cec2220540b0fe0e98909.js",
+    "precache-manifest.2e4de09423df66c32fae8c8fcecdb343.js": "/hud-gamepad/precache-manifest.2e4de09423df66c32fae8c8fcecdb343.js",
     "service-worker.js": "/hud-gamepad/service-worker.js",
     "static/css/main.cfda8877.chunk.css.map": "/hud-gamepad/static/css/main.cfda8877.chunk.css.map"
   }

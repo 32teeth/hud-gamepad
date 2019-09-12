@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/hud-gamepad/precache-manifest.4fa53fbed05cec2220540b0fe0e98909.js"
+  "/hud-gamepad/precache-manifest.2e4de09423df66c32fae8c8fcecdb343.js"
 );
 
 self.addEventListener('message', (event) => {
