@@ -1,6 +1,6 @@
 {
   "name": "hud-gamepad",
-  "version": "0.5.3",
+  "version": "0.5.6",
   "description": "A Heads Up Display (HUD) for Gamepads, Keyboards and More",
   "main": "index.js",
   "scripts": {

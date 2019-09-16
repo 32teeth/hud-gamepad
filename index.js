@@ -918,7 +918,7 @@ const GamePad = (function(){
   var helper = {
     debug:function()
     {
-      dy = 15;
+      dy = 30;
       ctx.fillStyle = "rgba(0,0,0,0.5)";
       ctx.textAlign = "left";
       ctx.textBaseline = "middle";
@@ -935,7 +935,7 @@ const GamePad = (function(){
     },
     trace:function()
     {
-      dy = 15;
+      dy = 30;
       ctx.fillStyle = "rgba(0,0,0,0.5)";
       ctx.textAlign = "right";
       ctx.textBaseline = "middle";
