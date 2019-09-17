@@ -7,7 +7,7 @@
 
 ```npm i hud-gamepad```
 
-<img src="animated.gif" style="position:relative;float:left"/>
+<img src="https://raw.githubusercontent.com/32teeth/hud-gamepad/master/animated.gif" style="position:relative;float:left"/>
 
 ### GamePad setup and configurations
 >In your html file add *GamePad.setup()*
