@@ -1,9 +1,8 @@
 {
   "name": "hud-gamepad",
-  "version": "0.5.7",
+  "version": "0.5.9",
   "description": "A Heads Up Display (HUD) for Gamepads, Keyboards and More",
   "main": "index.js",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/@32teeth" },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
