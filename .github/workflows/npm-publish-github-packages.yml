@@ -1,0 +1,60 @@
+name: Node.js Package
+
+on:
+  workflow_dispatch:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm i
+      - run: npm test
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      publish_status: ${{ steps.publish-step.outputs.publish_status }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com/
+      - run: npm i
+      - id: publish-step
+        run: |
+          set +e
+          npm publish 2> publish_error.log || ERROR=$?
+          set -e
+          if [ "$ERROR" == "1" ]; then
+            ERROR_MESSAGE=$(cat publish_error.log)
+            echo "Publishing failed due to existing version conflict."
+            # Post the error message to a GitHub issue
+            curl -X POST \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/issues \
+              -d "{\"title\": \"Publish Conflict\", \"body\": \"Attempted to publish over an existing version. Error details: \\n\\n$ERROR_MESSAGE\"}"
+            echo "::set-output name=publish_status::skipped"
+          else
+            echo "::set-output name=publish_status::success"
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  notify:
+    needs: publish
+    runs-on: ubuntu-latest
+    if: ${{ needs.publish.outputs.publish_status == 'skipped' }}
+    steps:
+      - run: echo "The publish step was skipped due to a version conflict."

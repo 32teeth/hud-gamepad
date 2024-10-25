@@ -1,0 +1,45 @@
+{
+  "name": "hud-gamepad-example",
+  "description": "A Heads Up Display (HUD) for Gamepads, Keyboards, and more",
+  "author": "Eugene Yevhen Andruszczenko <eugene.andruszczenko@gmail.com>",
+  "contributors": [
+    "32teeth <eugene.andruszczenko@gmail.com> (https://github.com/32teeth)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/32teeth/hud-gamepad.git"
+  },
+  "license": "ISC",
+  "version": "0.5.9",
+  "keywords": [
+    "gaming",
+    "gamepad",
+    "game-pad",
+    "controller",
+    "hud",
+    "heads-up-display"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "engines": {
+    "node": "20.x",
+    "npm": "10.x"
+  },
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "clean": "npm run clean:node",
+    "clean:node": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "example:setup": "npm run clean && npm install ../hud-gamepad.tgz && npm run example:serve",
+    "example:serve": "live-server --port=9000",
+    "example:echo": "echo 'HUD Gamepad Example'"
+  },
+  "dependencies": {
+    "hud-gamepad": "file:../hud-gamepad.tgz"
+  },
+  "bugs": {
+    "url": "https://github.com/32teeth/hud-gamepad/issues"
+  },
+  "homepage": "https://github.com/32teeth/hud-gamepad#readme"
+}

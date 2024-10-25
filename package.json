@@ -1,15 +1,16 @@
 {
   "name": "hud-gamepad",
-  "version": "0.5.9",
-  "description": "A Heads Up Display (HUD) for Gamepads, Keyboards and More",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "A Heads Up Display (HUD) for Gamepads, Keyboards, and more",
+  "author": "Eugene Yevhen Andruszczenko <eugene.andruszczenko@gmail.com>",
+  "contributors": [
+    "32teeth <eugene.andruszczenko@gmail.com> (https://github.com/32teeth)"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/32teeth/hud-gamepad.git"
   },
+  "license": "ISC",
+  "version": "0.5.9",
   "keywords": [
     "gaming",
     "gamepad",
@@ -18,10 +19,47 @@
     "hud",
     "heads-up-display"
   ],
-  "author": "eugene andruszczenko <eugene.andruszczenko@gmail.com> (http://32teeth.org)",
-  "license": "ISC",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "engines": {
+    "node": "20.x",
+    "npm": "10.x"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "index.css"
+  ],
+  "type": "module",
+  "types": "index.d.ts",
+  "scripts": {
+    "clean": "npm run clean:node",
+    "clean:node": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "publish:npm": "npm publish --registry https://registry.npmjs.org/",
+    "publish:github": "npm publish --registry https://npm.pkg.github.com/",
+    "publish": "npm run publish:npm && npm run publish:github",
+    "example:setup": "cd example && npm run example:setup",
+    "dev": "run-p dev:*",
+    "dev:npm": "nodemon --watch . --exec 'echo Watching files...' && npm run dev:example",
+    "dev:pack": "npm pack && mv hud-gamepad-*.tgz hud-gamepad.tgz",
+    "dev:example": "npm run example:setup",
+    "test": "mocha"
+  },
+  "postinstall": "npm install -g live-server && npm run dev",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "jsdom": "^25.0.1",
+    "mocha": "^9.1.3",
+    "nodemon": "^3.1.7",
+    "npm-run-all": "^4.1.5",
+    "sinon": "^19.0.2"
+  },
   "bugs": {
     "url": "https://github.com/32teeth/hud-gamepad/issues"
   },
-  "homepage": "https://github.com/32teeth/hud-gamepad#readme"
+  "homepage": "https://github.com/32teeth/hud-gamepad#readme",
+  "directories": {
+    "test": "test"
+  }
 }
