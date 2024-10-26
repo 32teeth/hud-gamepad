@@ -1,6 +1,6 @@
 import { MultiKeyHandler } from 'https://unpkg.com/multi-key-handler/index.js';
 //import { GamePad } from './node_modules/hud-gamepad/index.js';
-import { GamePad } from '../index.js';
+import { GamePad } from '../src/index.js';
 
 const buttons = [
   { name: "a", color: "rgba(255,0,0,0.5)", key: "s" },
@@ -15,13 +15,14 @@ const keys = buttons.map(({ key }) => key).join("") + start.key + select.key;
 
 document.addEventListener('DOMContentLoaded', () => {
   GamePad.setup({
-    canvas: "controller",
+    canvas: "gamepad",
+    joystick: true,
+    buttons,
     start,
     select,
     trace: true,
     debug: true,
     hint: true,
-    buttons
   });
   const multikey = new MultiKeyHandler(function(keys) {
     GamePad.events(keys);
