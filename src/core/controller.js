@@ -63,10 +63,7 @@ export class Controller {
       return acc;
     }, 0);
 
-    // Set controller position based on layout
     this.setPosition(shift);
-
-    // Initialize buttons
     this.initButtons();
 
     // Initialize joystick if configured
