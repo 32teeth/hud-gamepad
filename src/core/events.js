@@ -190,10 +190,12 @@ export class EventHandler {
 
   handleJoystickTouch(id, touch, type) {
     const stick = this.controller.joystick;
-    const dx = touch.x - stick.x;
-    const dy = touch.y - stick.y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
+    // Convert touch coordinates to integers for consistent behavior
+    const dx = parseInt(touch.x - stick.x);
+    const dy = parseInt(touch.y - stick.y);
+    const dist = parseInt(Math.sqrt(dx * dx + dy * dy));
 
+    // Check if touch is within joystick area
     if (dist < stick.radius * 1.5) {
       if (!type || type === "mousedown") {
         this.touches[id].id = "stick";
@@ -204,17 +206,27 @@ export class EventHandler {
     }
 
     if (this.touches[id].id === "stick") {
-      const halfRadius = stick.radius / 2;
-      if (Math.abs(dx) < halfRadius) stick.dx = stick.x + dx;
-      if (Math.abs(dy) < halfRadius) stick.dy = stick.y + dy;
+      // Update joystick position with integer values and radius constraints
+      if (Math.abs(parseInt(dx)) < (stick.radius / 2)) {
+        stick.dx = stick.x + dx;
+      }
+      if (Math.abs(parseInt(dy)) < (stick.radius / 2)) {
+        stick.dy = stick.y + dy;
+      }
 
-      this.controller.updateState({
-        "x-axis": (stick.dx - stick.x) / halfRadius,
-        "y-axis": (stick.dy - stick.y) / halfRadius,
-        "x-dir": Math.sign(stick.dx - stick.x),
-        "y-dir": Math.sign(stick.dy - stick.y)
-      });
+      // Update state map with axis values and rounded directions
+      const newState = {
+        "x-axis": (stick.dx - stick.x) / (stick.radius / 2),
+        "y-axis": (stick.dy - stick.y) / (stick.radius / 2)
+      };
 
+      // Add rounded directions (matches original behavior)
+      newState["x-dir"] = Math.round(newState["x-axis"]);
+      newState["y-dir"] = Math.round(newState["y-axis"]);
+
+      this.controller.updateState(newState);
+
+      // Handle touch outside joystick area
       if (dist > stick.radius * 1.5) {
         stick.reset();
         this.controller.updateState({
