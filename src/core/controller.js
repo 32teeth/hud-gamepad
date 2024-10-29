@@ -71,7 +71,8 @@ export class Controller {
           w: 50,
           h: 15,
           color: colors.black,
-          name: ButtonType.START
+          name: ButtonType.START,
+          key: typeof this.start === 'object' ? this.start.key : 'Enter' // Use provided key or default
         }],
         [ButtonType.SELECT, {
           x: width / 2,
@@ -79,12 +80,28 @@ export class Controller {
           w: 50,
           h: 15,
           color: colors.black,
-          name: ButtonType.SELECT
+          name: ButtonType.SELECT,
+          key: typeof this.select === 'object' ? this.select.key : 'Shift' // Use provided key or default
         }]
       ]);
 
-      if (this.start) this.buttonsLayout.push(buttonConfig.get(ButtonType.START));
-      if (this.select) this.buttonsLayout.push(buttonConfig.get(ButtonType.SELECT));
+      if (this.start) {
+        const startConfig = buttonConfig.get(ButtonType.START);
+        // Merge any provided config
+        if (typeof this.start === 'object') {
+          Object.assign(startConfig, this.start);
+        }
+        this.buttonsLayout.push(startConfig);
+      }
+
+      if (this.select) {
+        const selectConfig = buttonConfig.get(ButtonType.SELECT);
+        // Merge any provided config
+        if (typeof this.select === 'object') {
+          Object.assign(selectConfig, this.select);
+        }
+        this.buttonsLayout.push(selectConfig);
+      }
     }
 
     // Initialize buttons
@@ -135,7 +152,6 @@ export class Controller {
           buttonConfig.x = buttonConfig.name === "select" ?
             width / 2 - buttonConfig.w - offset :
             width / 2;
-          buttonConfig.y = config.y; // Use the calculated y position
         }
         buttonConfig.hit = {
           x: [buttonConfig.x, buttonConfig.x + buttonConfig.w],

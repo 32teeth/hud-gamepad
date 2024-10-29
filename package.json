@@ -1,5 +1,5 @@
 {
-  "name": "@npm-packages-collection/hud-gamepad",
+  "name": "hud-gamepad",
   "description": "A Heads Up Display (HUD) for Gamepads, Keyboards, and more",
   "author": "Eugene Yevhen Andruszczenko <eugene.andruszczenko@gmail.com>",
   "contributors": [
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/32teeth/hud-gamepad.git"
   },
   "license": "ISC",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "keywords": [
     "gaming",
     "gamepad",
@@ -20,7 +20,7 @@
     "heads-up-display"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://registry.npmjs.org/"
   },
   "engines": {
     "node": "20.x",

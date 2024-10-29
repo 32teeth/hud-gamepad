@@ -20,8 +20,8 @@ export class EventHandler {
     }
 
     const events = document.querySelector('.HudGamePadObserver')?.style.display === '' ?
-      ["touchstart", "touchend", "touchmove"] :
-      ["mousedown", "mouseup", "mousemove"];
+    ["touchstart", "touchend", "touchmove"] :
+    ["mousedown", "mouseup", "mousemove"];
 
     events.forEach(event => canvas.addEventListener(event, (e) => this.listen(e), { passive: false }));
 
@@ -240,24 +240,24 @@ export class EventHandler {
       if (r) {
         dist = Math.sqrt(dx * dx + dy * dy);
       } else if (touch.x > hit.x[0] && touch.x < hit.x[1] &&
-                 touch.y > hit.y[0] && touch.y < hit.y[1]) {
-        dist = 0;
-      }
-
-      if (dist < (r || 25)) {
-        if (!type || type === "mousedown") {
-          this.touches[id].id = name;
-        } else if (type === "mouseup") {
-          delete this.touches[id].id;
-          button.config.hit.active = false;
-          this.controller.updateState({ [name]: 0 });
+        touch.y > hit.y[0] && touch.y < hit.y[1]) {
+          dist = 0;
         }
-      }
 
-      if (this.touches[id].id === name) {
-        button.config.hit.active = true;
-        this.controller.updateState({ [name]: 1 });
-      }
-    });
+        if (dist < (r || 25)) {
+          if (!type || type === "mousedown") {
+            this.touches[id].id = name;
+          } else if (type === "mouseup") {
+            delete this.touches[id].id;
+            button.config.hit.active = false;
+            this.controller.updateState({ [name]: 0 });
+          }
+        }
+
+        if (this.touches[id].id === name) {
+          button.config.hit.active = true;
+          this.controller.updateState({ [name]: 1 });
+        }
+      });
+    }
   }
-}
