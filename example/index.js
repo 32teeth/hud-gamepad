@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     buttons,
     start,
     select,
-    trace: false,
-    debug: false,
+    trace: true,
+    debug: true,
     hint: true,
   });
   const multikey = new MultiKeyHandler(function(keys) {

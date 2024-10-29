@@ -2,226 +2,166 @@
 [![npm](https://img.shields.io/npm/dw/hud-gamepad?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/hud-gamepad)
 [![GitHub stars](https://img.shields.io/github/stars/32teeth/hud-gamepad?color=pink&label=love&logo=github&logoColor=white&style=for-the-badge)](https://github.com/32teeth/hud-gamepad/edit/master/README.md)
 
-# GamePad
-> So you want to add a gamepad to a html5/canvas based app in [html5](http://html5.apache.org/)
+# HUD GamePad
+> A fully customizable on-screen gamepad interface for HTML5 canvas applications
 
-```npm i hud-gamepad```
+```bash
+npm i hud-gamepad
+```
 
 <img src="https://raw.githubusercontent.com/32teeth/hud-gamepad/master/animated.gif" style="position:relative;float:left"/>
 
-### GamePad setup and configurations
->In your html file add *GamePad.setup()*
-
+### Quick Start
 ```javascript
-/*
-** this is a basic joystick and 1 button setup with start and select buttons
-*/
-GamePad.setup();
-```
+import { GamePad } from 'hud-gamepad';
 
-Checkout the working [React Example](https://32teeth.github.io/hud-gamepad/)
-
-## Configuration options
-
-*GamePad is fully customizable, from button names, colors, layout and more.*
-
-| property | type    | value(s)                                                   | description                                                | example                                                      |
-| -------: | :------ | :--------------------------------------------------------- | :--------------------------------------------------------- | :----------------------------------------------------------- |
-|    debug | boolean | true\|false                                                | show or hide event debug info *default is false*           | ```debug:false```                                            |
-|    trace | boolean | true\|false                                                | show or hide gamepad trace info *default is false*         | ```trace:false```                                            |
-|   canvas | string  | id of target canvas                                        | *if left out, creates a new canvas object*                 | ```canvas:"game"```                                          |
-|  buttons | array   | []                                                         | collection of button objects                               | ```[{name:"x",color:"rgba(255,255,0,0.5)"}]```               |
-|   button | object  | {name:string,color:hex\|rgb\|rgba}                         | properties for custom buttons                              | ```[{name:"x",color:"rgba(255,255,0,0.5)"},{name:"y",color:"rgba(255,0,255,0.5)"}]``` |
-|   layout | string  | TOP_LEFT<br />TOP_RIGHT<br />BOTTOM_LEFT<br />BOTTOM_RIGHT | cardinal position of buttons *default is **BOTTOM_RIGHT*** | ```layout:"BOTTOM_RIGHT"```                                  |
-|    start | boolean | true\|false                                                | display start button *default is true*                     | ```start:false```                                            |
-|   select | boolean | true\|false                                                | display select button *default is false*                   | ```select:false```                                           |
-| joystick | boolean | true\|false                                                | display joystick/dpad *default is false*                   | ```debug:false```                                            |
-|   hidden | boolean | true\|false                                                | show or hide the gamepad *default is false*                | this can be used to *hide* the gamepad if you are doing something else on screen |
-
-***if you are using [multikey.js](http://multikey.32teeth.org/) to extend the GamePad for keyboard access***
-
-| property | type    | value(s)                           | description                              | example                                  |
-| -------: | :------ | :--------------------------------- | :--------------------------------------- | :--------------------------------------- |
-|  buttons | array   | []                                 | collection of button objects             | ```[{name:"x",color:"rgba(255,255,0,0.5)", key:"[keyboard letter]"}]``` |
-|   button | object  | {name:string,color:hex\|rgb\|rgba} | properties for custom buttons            | ```[{name:"x",color:"rgba(255,255,0,0.5)", key:"w"},{name:"y",color:"rgba(255,0,255,0.5)", key:"q"}]``` |
-|     hint | boolean | true\|false                        | show or hidekeyboard hint *default is false* | ```hint:true```                          |
-
-### Config examples
-> *default options*
-
-![default options](https://raw.githubusercontent.com/32teeth/html5-plugin-canvas-gamepad/master/images/CDVGamepad-1.png)
-
-```javascript
-GamePad.setup();
-```
-
-###### *one button, custom name, no start button*
-
-![default options](https://raw.githubusercontent.com/32teeth/html5-plugin-canvas-gamepad/master/images/CDVGamepad-2.png)
-
-```javascript
+// Basic setup with joystick and default buttons
 GamePad.setup({
-  start:false,
-  buttons:[
-    {name:"jump"}
-  ]
+  joystick: true
 });
+
+// Listen for state changes
+setInterval(() => {
+  const state = GamePad.observe();
+  console.log(state);
+}, 16);
 ```
 
-###### *two buttons, custom names, custom colors, with select button*
+[Try the Live Demo](https://npm-packages-collection.github.io/hud-gamepad/example/)
 
-![default options](https://raw.githubusercontent.com/32teeth/html5-plugin-canvas-gamepad/master/images/CDVGamepad-3.png)
+## Configuration Options
 
+The GamePad is highly customizable with various options for buttons, layout, and behavior.
+
+| Property | Type | Values | Description | Example |
+|----------|------|--------|-------------|---------|
+| canvas | string | Canvas ID | Target canvas element (creates new if omitted) | `canvas: "gamepad"` |
+| joystick | boolean | true/false | Enable joystick (default: false) | `joystick: true` |
+| buttons | array | [{name, color, key}] | Button configurations | `buttons: [{name: "a", color: "rgba(255,0,0,0.75)"}]` |
+| layout | string | TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT | Controller position (default: BOTTOM_RIGHT) | `layout: "BOTTOM_LEFT"` |
+| start | boolean | true/false | Show start button (default: false) | `start: true` |
+| select | boolean | true/false | Show select button (default: false) | `select: true` |
+| debug | boolean | true/false | Show debug info (default: false) | `debug: true` |
+| trace | boolean | true/false | Show state trace (default: false) | `trace: true` |
+| hint | boolean | true/false | Show keyboard hints (default: false) | `hint: true` |
+| hidden | boolean | true/false | Hide gamepad (default: false) | `hidden: true` |
+
+### Button Configuration
+Each button can be customized with:
 ```javascript
-GamePad.setup({
-  select:true,
-  buttons:[
-    {name:"x",color:"rgba(255,255,0,0.5)"},
-    {name:"y",color:"rgba(0,255,255,0.75)"}
-  ]
-});
-```
-
-###### *target canvas*
-
-![default options](https://raw.githubusercontent.com/32teeth/html5-plugin-canvas-gamepad/master/images/CDVGamepad-4.png)
-
-```javascript
-GamePad.setup({
-  canvas:"game"
-});
-```
-
-###### *change layout canvas*
-
-![default options](https://raw.githubusercontent.com/32teeth/html5-plugin-canvas-gamepad/master/images/CDVGamepad-5.png)
-
-```javascript
-GamePad.setup({
-  layout:"BOTTOM_LEFT"
-});
-```
-
-###### *show trace & debug info*
-
-
-![default options](https://raw.githubusercontent.com/32teeth/html5-plugin-canvas-gamepad/master/images/CDVGamepad-6.png)
-
-```javascript
-GamePad.setup({
-  trace:true,
-  debug:true
-});
-```
-
-###### *all out everything*
-
-
-![default options](https://raw.githubusercontent.com/32teeth/html5-plugin-canvas-gamepad/master/images/CDVGamepad-7.png)
-
-```javascript
-GamePad.setup({
-  select:true,
-  trace:true,
-  debug:true,
-  canvas:"game",
-  buttons:[
-    {name:"z", color:"#17861c"},
-    {name:"y", color:"rgb(134, 83, 23)"},
-    {name:"x", color:"rgba(204, 0, 51, 0.5)"},
-  ]
-});
-```
-
-###### *hidden gamepad*
-
-![default options](https://raw.githubusercontent.com/32teeth/html5-plugin-canvas-gamepad/master/images/CDVGamepad-8.png)
-
-```javascript
-GamePad.setup({
-  hidden:true
-});
-```
-
-###### *real world example*
-
-![default options](https://raw.githubusercontent.com/32teeth/html5-plugin-canvas-gamepad/master/images/CDVGamepad-9.png)
-
-```javascript
-/*
-** @description start the game
-*/
-game.init();
-/*
-** @description setup gamepad, no stick, no start, one button
-*/
-GamePad.setup({
-  canvas:"controller",
-  joystick:false,
-  start:false,
-  buttons:[
-    {name:"jump", color:"rgba(0,0,0,0.25)"}
-  ]
-});
-```
-
-###### *example using key binding with [multikey.js](http://multikey.32teeth.org/)*
-
-![default options](https://raw.githubusercontent.com/32teeth/html5-plugin-canvas-gamepad/master/images/CDVGamepad-10.png)
-
-```javascript
-GamePad.setup(
-  {
-    canvas:"controller",
-    start:{name:"start", key:"b"},
-    select:{name:"select", key:"v"},
-    trace:true,
-    debug:true,
-    hint:true,
-    buttons:[
-      {name:"a", "key":"s"},
-      {name:"b", "key":"a"},
-      {name:"x", "key":"w"},
-      {name:"y", "key":"q"}
-    ]
-  }
-);
-multikey.setup(GamePad.events, "qwasbv", true);
-```
-the above code is running in [this example](http://32teeth.github.io/html5-plugin-canvas-gamepad/)
-
-### GamePad observable method
----
-GamePad has an observable method that returns the current state map of the gamepad
-
-**observe();**
-
-```javascript
-GamePad.setup()
-/*
-** @description the below example simply logs out the observe method return
-*/
-setInterval(
-  function()
-  {
-    var map = GamePad.observe();
-    console.log(new Date() + ":" + JSON.stringify(map))
-  }
-  ,1000
-);
-```
-
-
-```javascript
-/*
-** @description additionally, you can throw it into your main loop in canvas
-*/
-function draw()
 {
-  if(GamePad)
-  {
-    gamepad(GamePad.observe())
-  }
+  name: "a",                    // Button label
+  color: "rgba(255,0,0,0.75)", // Button color
+  key: "x"                     // Keyboard binding
 }
 ```
 
+### Example Configurations
+
+#### Basic Setup
+```javascript
+GamePad.setup();
+```
+
+#### Custom Button Configuration
+```javascript
+GamePad.setup({
+  buttons: [
+    { name: "jump", color: "rgba(255,0,0,0.75)", key: "space" },
+    { name: "shoot", color: "rgba(0,255,0,0.75)", key: "x" }
+  ],
+  joystick: true,
+  hint: true
+});
+```
+
+#### Full Configuration
+```javascript
+GamePad.setup({
+  canvas: "gamepad",
+  joystick: true,
+  start: true,
+  select: true,
+  debug: true,
+  trace: true,
+  hint: true,
+  layout: "BOTTOM_RIGHT",
+  buttons: [
+    { name: "a", color: "rgba(255,0,0,0.75)", key: "x" },
+    { name: "b", color: "rgba(0,255,0,0.75)", key: "z" },
+    { name: "x", color: "rgba(0,0,255,0.75)", key: "a" },
+    { name: "y", color: "rgba(255,255,0,0.75)", key: "s" }
+  ]
+});
+```
+
+### State Observation
+The GamePad provides real-time state information through the observe method:
+
+```javascript
+// Get current state
+const state = GamePad.observe();
+
+// State includes:
+// - Button states (0 or 1)
+// - Joystick axes (-1 to 1)
+// - Joystick directions (-1, 0, 1)
+
+// Example state object:
+{
+  "a": 0,          // Button a state
+  "b": 1,          // Button b state
+  "x-axis": 0.5,   // Joystick X position
+  "y-axis": -0.25, // Joystick Y position
+  "x-dir": 1,      // Joystick X direction
+  "y-dir": -1      // Joystick Y direction
+}
+```
+
+### Integration Example
+```javascript
+// Game loop integration
+function gameLoop() {
+  const state = GamePad.observe();
+
+  // Handle joystick
+  if (state["x-axis"] !== 0 || state["y-axis"] !== 0) {
+    player.move(state["x-axis"], state["y-axis"]);
+  }
+
+  // Handle buttons
+  if (state.a) {
+    player.jump();
+  }
+
+  requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+```
+
+### Example with Keyboard Support
+```javascript
+GamePad.setup({
+  canvas: "controller",
+  start: true,
+  select: true,
+  trace: true,
+  debug: true,
+  hint: true,
+  buttons: [
+    { name: "a", key: "s" },
+    { name: "b", key: "a" },
+    { name: "x", key: "w" },
+    { name: "y", key: "q" }
+  ]
+});
+```
+
+## Browser Support
+- Modern browsers with Canvas support
+- Touch events for mobile devices
+- Keyboard support for desktop
+
+## License
+ISC License
