@@ -26,6 +26,10 @@ export class Controller {
     this.start = config.start || false;
     this.select = config.select || false;
 
+    // Clear existing buttons
+    this.buttons = [];
+    this.buttonsLayout = [];
+
     // Initialize button layout
     if (config.buttons) {
       let index = Math.min(config.buttons.length - 1, Object.keys(ButtonsLayout).length - 1);
@@ -40,18 +44,6 @@ export class Controller {
       this.buttonsLayout = [...ButtonsLayout.FOUR_BUTTONS];
     }
 
-    // Add start/select buttons if configured
-    const { width, height } = stage.getDimensions();
-    if (this.start || this.select) {
-      const buttonConfig = new Map([
-        [ButtonType.START, { x: width / 2, y: height - 65, w: 50, h: 15, color: colors.black, name: ButtonType.START }],
-        [ButtonType.SELECT, { x: width / 2, y: height - 65, w: 50, h: 15, color: colors.black, name: ButtonType.SELECT }]
-      ]);
-
-      if (this.start) this.buttonsLayout.push(buttonConfig.get(ButtonType.START));
-      if (this.select) this.buttonsLayout.push(buttonConfig.get(ButtonType.SELECT));
-    }
-
     // Calculate shift for button positioning
     const shift = this.buttonsLayout.reduce((acc, button) => {
       if (button.r) {
@@ -63,7 +55,39 @@ export class Controller {
       return acc;
     }, 0);
 
+    // Set controller position based on layout
     this.setPosition(shift);
+
+    // Add start/select buttons if configured
+    const { width, height } = stage.getDimensions();
+    if (this.start || this.select) {
+      // Adjust Y position based on layout
+      const yOffset = this.layout.includes('TOP') ? button_offset.y : height - button_offset.y;
+
+      const buttonConfig = new Map([
+        [ButtonType.START, {
+          x: width / 2,
+          y: yOffset - 15,
+          w: 50,
+          h: 15,
+          color: colors.black,
+          name: ButtonType.START
+        }],
+        [ButtonType.SELECT, {
+          x: width / 2,
+          y: yOffset - 15,
+          w: 50,
+          h: 15,
+          color: colors.black,
+          name: ButtonType.SELECT
+        }]
+      ]);
+
+      if (this.start) this.buttonsLayout.push(buttonConfig.get(ButtonType.START));
+      if (this.select) this.buttonsLayout.push(buttonConfig.get(ButtonType.SELECT));
+    }
+
+    // Initialize buttons
     this.initButtons();
 
     // Initialize joystick if configured
@@ -86,6 +110,9 @@ export class Controller {
   }
 
   initButtons() {
+    // Clear existing buttons array
+    this.buttons = [];
+
     const ctx = stage.getContext();
     const { width } = stage.getDimensions();
 
@@ -101,11 +128,14 @@ export class Controller {
           active: false
         };
       } else {
+        // For start/select buttons
         buttonConfig.x = buttonConfig.x - buttonConfig.w;
         if (this.start && this.select) {
+          const offset = buttonConfig.h * 2;
           buttonConfig.x = buttonConfig.name === "select" ?
-            width / 2 - buttonConfig.w - buttonConfig.h * 2 :
+            width / 2 - buttonConfig.w - offset :
             width / 2;
+          buttonConfig.y = config.y; // Use the calculated y position
         }
         buttonConfig.hit = {
           x: [buttonConfig.x, buttonConfig.x + buttonConfig.w],
@@ -119,8 +149,10 @@ export class Controller {
   }
 
   draw() {
-    if (this.buttons.length > 0) {
-      this.buttons.forEach(button => button.draw());
+    if (this.buttons && this.buttons.length > 0) {
+      this.buttons.forEach(button => {
+        if (button) button.draw();
+      });
     }
     if (this.joystick) {
       this.joystick.draw();
@@ -133,12 +165,6 @@ export class Controller {
 
   updateState(inputState) {
     Object.assign(this.stateMap, inputState);
-  }
-
-  updateButtonState(buttonName, isActive) {
-    if (this.stateMap.hasOwnProperty(buttonName)) {
-      this.stateMap[buttonName] = isActive ? 1 : 0;
-    }
   }
 
   resetStates() {

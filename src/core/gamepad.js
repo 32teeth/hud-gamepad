@@ -42,10 +42,13 @@ export class GamePad {
     });
 
     // Initialize display
-    this.init();
-
-    // Start render loop
-    this.startLoop();
+    await this.init().then(() => {
+      setTimeout(() => {
+        console.log('GamePad ready');
+        this.draw();
+        this.startLoop();
+      },100);
+    })
   }
 
   async loadCSS(href) {
@@ -61,7 +64,7 @@ export class GamePad {
     }
   }
 
-  init() {
+  async init() {
     const ctx = stage.getContext();
     const { width, height } = stage.getDimensions();
 
@@ -72,8 +75,6 @@ export class GamePad {
     ctx.font = "10px 'superhelio _regular'";
     ctx.fillText("loading", width / 2, height / 2);
 
-    // Initial draw
-    this.controller.draw();
     this.ready = true;
   }
 
@@ -155,6 +156,7 @@ export class GamePad {
       this.animationFrame = requestAnimationFrame(loop);
     };
     loop();
+    //this.draw();
   }
 
   stop() {
