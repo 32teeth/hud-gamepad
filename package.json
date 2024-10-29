@@ -1,5 +1,5 @@
 {
-  "name": "hud-gamepad",
+  "name": "@npm-packages-collection/npm-hud-gamepad",
   "description": "A Heads Up Display (HUD) for Gamepads, Keyboards, and more",
   "author": "Eugene Yevhen Andruszczenko <eugene.andruszczenko@gmail.com>",
   "contributors": [
@@ -20,7 +20,7 @@
     "heads-up-display"
   ],
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://npm.pkg.github.com/"
   },
   "engines": {
     "node": "20.x",
@@ -47,7 +47,7 @@
     "dev:npm": "nodemon --watch . --exec 'echo Watching files...' && npm run dev:example",
     "dev:pack": "npm pack && mv hud-gamepad-*.tgz hud-gamepad.tgz",
     "dev:example": "npm run example:setup",
-    "test": "mocha"
+    "test": "mocha --require ./test/setup.js"
   },
   "postinstall": "npm install -g live-server && npm run dev",
   "devDependencies": {
