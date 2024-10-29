@@ -1,0 +1,27 @@
+:root {
+  --theme: #CCCCCC;
+}
+body {
+  display: flex;
+  width: 100dvw;
+  height: 100dvh;
+  background: var(--theme);
+  overflow: hidden;
+  position: fixed;
+  touch-action: none;
+}
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  touch-action: none;
+}
+canvas {
+  touch-action: none !important;
+}
+.HudGamePadObserver {
+  touch-action: none !important;
+}

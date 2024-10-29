@@ -10,7 +10,7 @@
     "url": "git+https://github.com/32teeth/hud-gamepad.git"
   },
   "license": "ISC",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "keywords": [
     "gaming",
     "gamepad",
@@ -28,8 +28,11 @@
   },
   "main": "index.js",
   "files": [
-    "index.js",
-    "index.css"
+    "src/**/*",
+    "types/index.d.ts",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
   ],
   "type": "module",
   "types": "index.d.ts",
