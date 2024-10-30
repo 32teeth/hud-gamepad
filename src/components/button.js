@@ -75,16 +75,17 @@ export class Button {
       if (hit?.active) {
         ctx.beginPath();
         ctx.roundRect(rectX - 5, rectY - 5, w + 10, h + 10, rectR * 2);
+        ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
         ctx.fill();
       }
 
       ctx.beginPath();
       ctx.roundRect(rectX, rectY, w, h, rectR);
+      ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
       ctx.fill();
       ctx.strokeStyle = color;
       ctx.lineWidth = 2;
       ctx.stroke();
-      ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
       ctx.fillText(name, rectX + w / 2, rectY + h * 2);
 
       if (key) {
