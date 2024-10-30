@@ -26,5 +26,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   const multikey = new MultiKeyHandler(function(keys) {
     GamePad.events(keys);
-  }, { keys, arrows: true, debug: true });
+  }, { keys, arrows: true, debug: false });
 });

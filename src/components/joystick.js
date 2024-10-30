@@ -53,6 +53,6 @@ export class Joystick {
 
   reset() {
     this.dx = this.x;
-    this.dy = this.y;
+		this.dy = this.y;
   }
 }
