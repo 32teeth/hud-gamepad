@@ -29,9 +29,7 @@ export class EventHandler {
       browser:["mousedown", "mouseup", "mousemove"],
       app:["touchstart", "touchend", "touchmove"]
     }
-    //events = (document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1) ? events.app : events.browser;
     events = document.querySelector('.HudGamePadObserver').style.display === '' ? events.app : events.browser;
-    //const events = ["mousedown", "mouseup", "mousemove", "touchstart", "touchend", "touchmove"];
     events.forEach(event => canvas.addEventListener(event, (e) => this.listen(e), { passive: false }));
 
     // Update the resize observer to properly handle window resizing
@@ -50,8 +48,11 @@ export class EventHandler {
     if (!e) return this.controller.getState();
     if (e.type) {
       this.handlePointerEvent(e);
+      this.dispatch(e);
     } else {
-      this.handleKeyboardEvent(e);
+      if(!this.stickPressed) {
+        this.handleKeyboardEvent(e);
+      }
     }
 
     if (this.observerFunction) {
@@ -59,6 +60,40 @@ export class EventHandler {
     }
 
     return this.controller.getState();
+  }
+
+  dispatch(e) {
+    const states = this.controller.getState();
+
+    const arrows = {
+      up: {
+        key: "ArrowUp",
+        code: 38,
+        active: states['y-dir'] === -1
+      },
+      down: {
+        key: "ArrowDown",
+        code: 40,
+        active: states['y-dir'] === 1
+      },
+      left: {
+        key: "ArrowLeft",
+        code: 37,
+        active: states['x-dir'] === -1
+      },
+      right: {
+        key: "ArrowRight",
+        code: 39,
+        active: states['x-dir'] === 1
+      }
+    }
+
+    Object.values(arrows).forEach(({ key, code, active }) => {
+      window.dispatchEvent(new KeyboardEvent(
+        !active ? "keyup" : "keydown",
+        { key, keyCode: code, which: code, bubbles: true }
+      ));
+    });
   }
 
   handlePointerEvent(e) {

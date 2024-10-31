@@ -1,0 +1,302 @@
+@import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined);
+@import url(https://fonts.googleapis.com/css2?family=Comfortaa&display=swap:400,100,500,300italic,500italic,700italic,900,300);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,500,300italic,500italic,700italic,900,300);
+
+:root {
+  --step: calc(20/16 * 1rem);
+  --base: calc(160/16 * 1rem);
+  --x: 0deg;
+  --y: 0deg;
+  --z: 0deg;
+  --tx: 0px;
+  --ty: 0px;
+  --tz: 0px;
+  --light: #D9CCCB;
+  --medium: #756F71;
+  --dark: #585455;
+  --black: #2C2C2E;
+}
+
+
+body {
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to top,
+  #376c0b calc(var(--base) * 1),
+  #56B30B calc(var(--base) * 1),
+  #56B30B calc(var(--base) + var(--step) * 1),
+  #C7FCFD calc(var(--base) + var(--step) * 1),
+  #C7FCFD calc(var(--base) + var(--step) * 2),
+  #B6E7E8 calc(var(--base) + var(--step) * 2),
+  #B6E7E8 calc(var(--base) + var(--step) * 3),
+  #A4CFD1 calc(var(--base) + var(--step) * 3),
+  #A4CFD1 calc(var(--base) + var(--step) * 4),
+  #95CDCF calc(var(--base) + var(--step) * 4),
+  #95CDCF calc(var(--base) + var(--step) * 5),
+  #8CC2C3 calc(var(--base) + var(--step) * 5),
+  #8CC2C3);
+  display: flex;
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
+  touch-action: none;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  width: 256px;
+  height: 256px;
+  perspective: 500px;
+  position: relative;
+  transform: scale(var(--s));
+  transition: all 100ms;
+}
+
+section {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform:
+    translate3d(var(--tx), var(--ty), var(--tz))
+    rotateX(var(--x))
+    rotateY(var(--y))
+    rotateZ(var(--z));
+  transition: all 100ms;
+}
+
+figure {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top,
+.bottom,
+.front,
+.back,
+.left,
+.right {
+  width: 256px;
+}
+
+.front,
+.back,
+.left,
+.right {
+  height: 90px;
+}
+
+.top,
+.bottom {
+  height: 256px;
+}
+
+.front {
+  transform: rotateX(0deg) translateZ(128px);
+  background: linear-gradient(to left, transparent 30px, var(--black) 30px, var(--black) 70px, transparent 70px),
+    linear-gradient(var(--light) 41px, var(--medium) 41px),
+    var(--light);
+}
+
+.front:before,
+.top:before {
+  content: '';
+  position: absolute;
+  width: 156px;
+  height: 24px;
+  border-style: solid;
+  border-color: var(--medium);
+  z-index: 9999;
+}
+
+.front:before {
+  top: 0;
+  left: 29px;
+  border-width: 0 0 1px 1px;
+}
+
+.back {
+  transform: rotateX(180deg) translateZ(128px);
+  background: radial-gradient(circle, var(--light) 1px, transparent 1px) 0 0,
+    radial-gradient(circle, var(--black) 5px, transparent 5px) 0 0,
+    radial-gradient(circle, var(--light) 1px, transparent 1px) 0 0,
+    radial-gradient(circle, rgba(0, 0, 0, 0.25) 5px, transparent 5px) 0 0,
+    radial-gradient(circle, var(--dark) 2px, transparent 2px) 0 0,
+    radial-gradient(circle, var(--light) 5px, transparent 5px) 0 0,
+    linear-gradient(to bottom, var(--dark) 10px, var(--dark) 10px) 0 0,
+    linear-gradient(to bottom, var(--dark) 10px, transparent 10px) 0 0,
+    linear-gradient(var(--medium) 49px, transparent 49px),
+    linear-gradient(to left, transparent 30px, var(--black) 30px, var(--black) 70px, transparent 70px),
+    linear-gradient(var(--medium) 49px, var(--light) 49px),
+    var(--light);
+  background-position:
+    110px -30px,
+    110px -30px,
+    96px -30px,
+    96px -30px,
+    82px -30px,
+    82px -30px,
+    calc(100% - 8px) 0,
+    calc(50% - 7px) 0,
+    0 0,
+    0 0,
+    0 0;
+  background-size:
+    100%,
+    100%,
+    100%,
+    100%,
+    100%,
+    100%,
+    48px 24px,
+    15px 10px,
+    100%,
+    100%,
+    100%;
+  background-repeat: no-repeat;
+}
+
+.left {
+  transform: rotateY(270deg) translateZ(128px);
+  background: linear-gradient(var(--light) 41px, var(--medium) 41px),
+    var(--light);
+}
+
+.right {
+  transform: rotateY(90deg) translateZ(128px);
+  background: radial-gradient(circle, var(--black) 2px, transparent 2px) 0 0,
+    radial-gradient(circle, yellow 5px, transparent 5px) 0 0,
+    radial-gradient(circle, var(--black) 2px, transparent 2px) 0 0,
+    radial-gradient(circle, red 5px, transparent 5px) 0 0,
+    linear-gradient(to bottom, var(--dark) 10px, var(--dark) 10px) 0 0,
+    linear-gradient(var(--light) 41px, var(--medium) 41px),
+    var(--light);
+  background-position:
+    100px 36px,
+    100px 36px,
+    84px 36px,
+    84px 36px,
+    204px 72px,
+    0 0,
+    0 0;
+  background-size:
+    100%,
+    100%,
+    100%,
+    100%,
+    32px 24px,
+    100%,
+    100%;
+  background-repeat: no-repeat;
+}
+
+.top {
+  transform: rotateX(90deg) translateZ(45px);
+  background: linear-gradient(to top, transparent 10px, var(--black) 10px),
+    linear-gradient(to top, transparent 10px, var(--black) 10px),
+    linear-gradient(to left, var(--light) 30px, transparent 30px, transparent 70px, var(--light) 70px),
+    linear-gradient(to top, transparent 2px, var(--medium) 2px, var(--medium) 4px, transparent 4px),
+    linear-gradient(to left, transparent 30px, var(--black) 30px, var(--black) 70px, transparent 70px),
+    var(--light);
+  background-position:
+    calc(100% - 30px) 0,
+    calc(100% - 30px) calc(100% + 20px),
+    0 0,
+    10px 10px,
+    0 0,
+    0 0;
+  background-size:
+    40px 40px,
+    40px 40px,
+    100%,
+    4px 4px,
+    100%,
+    100%;
+  background-repeat: no-repeat,
+    no-repeat,
+    no-repeat,
+    repeat,
+    no-repeat,
+    no-repeat;
+  position: relative;
+}
+
+.top:before {
+  bottom: 0;
+  left: 29px;
+  border-width: 1px 0 0 1px;
+}
+
+.bottom {
+  transform: rotateX(270deg) translateZ(45px);
+  background: var(--dark);
+  box-shadow: 0 0 0 10px var(--medium) inset;
+}
+
+
+instructions {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: calc(40 / 16 * 1rem) calc(20 / 16 * 1rem);
+  opacity: 0.5;
+  z-index: 9999;
+}
+
+instructions div {
+  display: flex;
+  flex-direction: column;
+  gap: calc(10 / 16 * 1rem);
+}
+
+instructions a {
+  display: flex;
+  align-items: center;
+  justify-self: space-between;
+  gap: calc(8 / 16 * 1rem);
+  color: black;
+  text-decoration: none;
+  border: solid calc(2 /16 * 1rem) black;
+  border-radius: calc(24 / 16 * 1rem);
+  padding: calc(8 / 16 * 1rem) calc(16 / 16 * 1rem);
+  transition: all ease 250ms;
+}
+
+instructions a:hover {
+  background: white;
+}
+
+instructions img {
+  width: calc(16 / 16 * 1rem);
+  height: calc(16 / 16 * 1rem);;
+  cursor: pointer;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  touch-action: none;
+}
+canvas {
+  touch-action: none !important;
+}
+.HudGamePadObserver {
+  touch-action: none !important;
+}
