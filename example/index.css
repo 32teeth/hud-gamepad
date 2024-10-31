@@ -1,0 +1,77 @@
+@import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined);
+@import url(https://fonts.googleapis.com/css2?family=Comfortaa&display=swap:400,100,500,300italic,500italic,700italic,900,300);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,500,300italic,500italic,700italic,900,300);
+
+:root {
+  --step: calc(20/16 * 1rem);
+  --base: calc(160/16 * 1rem);
+  --x: 0deg;
+  --y: 0deg;
+  --z: 0deg;
+  --tx: 0px;
+  --ty: 0px;
+  --tz: 0px;
+  --light: #D9CCCB;
+  --medium: #756F71;
+  --dark: #585455;
+  --black: #2C2C2E;
+}
+
+
+body {
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  background:
+  linear-gradient(to right, vaR(--light) 50%, transparent 50%),
+  linear-gradient(to top,
+  #376c0b calc(var(--base) * 1),
+  #56B30B calc(var(--base) * 1),
+  #56B30B calc(var(--base) + var(--step) * 1),
+  #C7FCFD calc(var(--base) + var(--step) * 1),
+  #C7FCFD calc(var(--base) + var(--step) * 2),
+  #B6E7E8 calc(var(--base) + var(--step) * 2),
+  #B6E7E8 calc(var(--base) + var(--step) * 3),
+  #A4CFD1 calc(var(--base) + var(--step) * 3),
+  #A4CFD1 calc(var(--base) + var(--step) * 4),
+  #95CDCF calc(var(--base) + var(--step) * 4),
+  #95CDCF calc(var(--base) + var(--step) * 5),
+  #8CC2C3 calc(var(--base) + var(--step) * 5),
+  #8CC2C3);
+  display: flex;
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
+  touch-action: none;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  display: flex;
+  width: 100dvw;
+  height: 100dvh;
+  align-items: center;
+  justify-content: space-around;
+}
+
+main a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: calc(8 / 16 * 1rem);
+  color: black;
+  text-decoration: none;
+  border: solid calc(2 /16 * 1rem) black;
+  border-radius: calc(24 / 16 * 1rem);
+  padding: calc(8 / 16 * 1rem) calc(16 / 16 * 1rem);
+  transition: all ease 250ms;
+  width: calc(128 / 16 * 1rem);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+main a:hover {
+  background: white;
+}

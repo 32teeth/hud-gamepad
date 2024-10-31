@@ -44,7 +44,7 @@
     "clean:pack": "rm -f *.tgz || true",
     "setup": "npm install && cd example && npm install",
     "build": "npm pack",
-    "start": "cd example && live-server --port=8080 --host=localhost --open=/advanced/index.html --mount=/src:../src",
+    "start": "cd example && live-server --port=8080 --host=localhost --open=/index.html --mount=/src:../src",
     "dev": "run-p dev:watch dev:serve",
     "dev:init": "npm run clean && npm run setup && npm run build",
     "dev:watch": "nodemon --watch src --exec 'npm run build'",
