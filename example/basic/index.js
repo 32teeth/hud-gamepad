@@ -1,6 +1,5 @@
 import { MultiKeyHandler } from 'https://unpkg.com/multi-key-handler/index.js';
-//import { GamePad } from './node_modules/hud-gamepad/index.js';
-import { GamePad } from '../src/index.js';
+import { GamePad } from 'https://unpkg.com/hud-gamepad/src/index.js';
 
 const buttons = [
   { name: "a", color: "rgba(255,0,0,0.5)", key: "s" },
