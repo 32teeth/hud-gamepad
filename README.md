@@ -9,7 +9,7 @@
 npm i hud-gamepad
 ```
 
-[HUD Game Pad](https://raw.githubusercontent.com/npm-packages-collection/hud-gamepad/refs/heads/main/assets/hud-gamepad.gif")
+![HUD Game Pad](https://raw.githubusercontent.com/npm-packages-collection/hud-gamepad/refs/heads/main/assets/hud-gamepad.gif)
 
 ### Quick Start
 ```javascript
