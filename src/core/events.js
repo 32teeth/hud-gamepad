@@ -12,6 +12,10 @@ export class EventHandler {
     this.isBinding = false;
     this.stickPressed = false;
 
+    // Add key repeat handling
+    this.keyStates = new Map();
+    this.repeatDelay = 300;  // Initial delay before repeat starts
+    this.repeatRate = 50;    // How often to repeat (ms)
   }
 
   bind() {
@@ -21,7 +25,6 @@ export class EventHandler {
       console.error('Canvas not found');
       return;
     }
-
 
     canvas.oncontextmenu = function(e) { e.preventDefault(); };
 
@@ -42,6 +45,15 @@ export class EventHandler {
     });
 
     resizeObserver.observe(document.body);
+
+    // Cleanup on page unload
+    window.addEventListener('unload', () => {
+      this.keyStates.forEach((timer) => {
+        clearTimeout(timer.timeout);
+        clearInterval(timer.interval);
+      });
+      this.keyStates.clear();
+    });
   }
 
   listen(e) {
@@ -64,6 +76,51 @@ export class EventHandler {
 
   dispatch(e) {
     const states = this.controller.getState();
+    const dispatchKey = (key, code, isActive) => {
+      if (isActive) {
+        if (!this.keyStates.has(key)) {
+          // Initial keydown
+          window.dispatchEvent(new KeyboardEvent("keydown", {
+            key,
+            keyCode: code,
+            which: code,
+            bubbles: true,
+            repeat: false
+          }));
+
+          // Setup repeat behavior
+          const timeout = setTimeout(() => {
+            const interval = setInterval(() => {
+              window.dispatchEvent(new KeyboardEvent("keydown", {
+                key,
+                keyCode: code,
+                which: code,
+                bubbles: true,
+                repeat: true
+              }));
+            }, this.repeatRate);
+
+            this.keyStates.set(key, { timeout, interval });
+          }, this.repeatDelay);
+
+          this.keyStates.set(key, { timeout, interval: null });
+        }
+      } else if (this.keyStates.has(key)) {
+        // Cleanup timers
+        const timers = this.keyStates.get(key);
+        clearTimeout(timers.timeout);
+        if (timers.interval) clearInterval(timers.interval);
+        this.keyStates.delete(key);
+
+        // Send keyup
+        window.dispatchEvent(new KeyboardEvent("keyup", {
+          key,
+          keyCode: code,
+          which: code,
+          bubbles: true
+        }));
+      }
+    };
 
     const arrows = {
       up: {
@@ -86,13 +143,18 @@ export class EventHandler {
         code: 39,
         active: states['x-dir'] === 1
       }
-    }
+    };
+
+    const buttons = this.controller.buttons;
+    buttons.forEach(button => {
+      const { key, name } = button.config;
+      const isActive = states[name] === 1;
+      button.config.hit.active = isActive;
+      dispatchKey(key, key.charCodeAt(0), isActive);
+    });
 
     Object.values(arrows).forEach(({ key, code, active }) => {
-      window.dispatchEvent(new KeyboardEvent(
-        !active ? "keyup" : "keydown",
-        { key, keyCode: code, which: code, bubbles: true }
-      ));
+      dispatchKey(key, code, active);
     });
   }
 

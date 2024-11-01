@@ -253,7 +253,7 @@ instructions {
   justify-content: space-between;
   padding: calc(40 / 16 * 1rem) calc(20 / 16 * 1rem);
   opacity: 0.5;
-  z-index: 9999;
+  z-index: 1000;
 }
 
 instructions div {
