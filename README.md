@@ -9,7 +9,7 @@
 npm i hud-gamepad
 ```
 
-<img src="https://raw.githubusercontent.com/32teeth/hud-gamepad/master/animated.gif" style="position:relative;float:left"/>
+<img src="https://raw.githubusercontent.com/npm-packages-collection/hud-gamepad/refs/heads/main/assets/hud-gamepad.gif"/>
 
 ### Quick Start
 ```javascript
