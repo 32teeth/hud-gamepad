@@ -1,6 +1,6 @@
-[![File Size](https://img.shields.io/github/size/32teeth/hud-gamepad/index.js?style=for-the-badge)](https://github.com/32teeth/hud-gamepad/edit/master/README.md)
+[![File Size](https://img.shields.io/github/size/npm-packages-collection/hud-gamepad/index.js?style=for-the-badge)](https://github.com/npm-packages-collection/hud-gamepad/edit/master/README.md)
 [![npm](https://img.shields.io/npm/dw/hud-gamepad?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/hud-gamepad)
-[![GitHub stars](https://img.shields.io/github/stars/32teeth/hud-gamepad?color=pink&label=love&logo=github&logoColor=white&style=for-the-badge)](https://github.com/32teeth/hud-gamepad/edit/master/README.md)
+[![GitHub stars](https://img.shields.io/github/stars/npm-packages-collection/hud-gamepad?color=pink&label=love&logo=github&logoColor=white&style=for-the-badge)](https://github.com/npm-packages-collection/hud-gamepad/edit/master/README.md)
 
 # HUD GamePad
 > A fully customizable on-screen gamepad interface for HTML5 canvas applications
