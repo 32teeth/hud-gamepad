@@ -7,10 +7,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/32teeth/hud-gamepad.git"
+    "url": "git+https://github.com/npm-packages-collection/hud-gamepad.git"
   },
   "license": "ISC",
-  "version": "0.6.7",
+  "version": "0.6.8",
   "keywords": [
     "gaming",
     "gamepad",
@@ -44,7 +44,7 @@
     "clean:pack": "rm -f *.tgz || true",
     "setup": "npm install && cd example && npm install",
     "build": "npm pack",
-    "start": "cd example && live-server --port=8080 --host=192.168.86.166 --open=/index.html --mount=/src:../src",
+    "start": "cd example && live-server --port=8080 --open=/index.html --mount=/src:../src",
     "dev": "run-p dev:watch dev:serve",
     "dev:init": "npm run clean && npm run setup && npm run build",
     "dev:watch": "nodemon --watch src --exec 'npm run build'",
@@ -64,9 +64,9 @@
     "sinon": "^19.0.2"
   },
   "bugs": {
-    "url": "https://github.com/32teeth/hud-gamepad/issues"
+    "url": "https://github.com/npm-packages-collection/hud-gamepad/issues"
   },
-  "homepage": "https://github.com/32teeth/hud-gamepad#readme",
+  "homepage": "https://github.com/npm-packages-collection/hud-gamepad#readme",
   "directories": {
     "test": "test"
   }
