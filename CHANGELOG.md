@@ -1,5 +1,13 @@
 # Changelog
 
+### 0.7.0
+
+What changed in this version?
+
+* Change 1
+* Change 2
+* Change 3
+
 ### 0.6.9
 
 What changed in this version?

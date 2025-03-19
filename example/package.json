@@ -8,6 +8,6 @@
     "start": "cd .. && npm run start"
   },
   "dependencies": {
-    "npm-hud-gamepad": "file:.."
+    "hud-gamepad": "file:.."
   }
 }
